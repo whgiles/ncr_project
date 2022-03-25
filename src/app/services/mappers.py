@@ -1,7 +1,9 @@
 from src.app.entities import *
+from src.app import app
 
 
 def dict_to_account(data: dict):
+    app.logger.error("kjsbfd--------------------------------------------------------------------------------------------------")
     acc = Account(
         data['account_number_hash'],
         data['number_of_transactions']

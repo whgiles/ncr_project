@@ -35,4 +35,3 @@ def add_item_transaction():
     item = dic_to_item_transaction(data)
     PersistItemTransaction(item)
     return "<p>ItemTransaction Added</p>"
-
