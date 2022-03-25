@@ -1,0 +1,34 @@
+accounts:
+    unique account number
+    number of transactions
+    most recent transaction
+
+transactions:
+    reference an account number
+    unique global_transaction_id
+    store number
+    ticket number NULL
+    date
+    transaction start time
+    transaction end time
+    num items
+    ticket_total_value
+
+item_in_transaction:
+    reference global_transaction_id
+    reference item_id from item_description
+    dept_num
+    qty_sold
+    item_price
+    qty_is_weight
+    ticket_num
+    date (should be the same from transaction table)
+    time_scanned
+
+item descriptions:
+    Unique Item Id
+    description
+    ecomm_description
+    category
+    item_type
+    upc
