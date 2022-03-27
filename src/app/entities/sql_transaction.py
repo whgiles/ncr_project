@@ -1,7 +1,8 @@
 
 class Transaction:
 
-    def __init__(self, global_transaction_id: int,
+    def __init__(self,
+                 global_transaction_id: int,
                  account_number_hash: str,
                  store_num: int,
                  ticket_num: int,

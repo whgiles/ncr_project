@@ -24,14 +24,14 @@ CREATE TABLE item_descriptions (
     item_type NUMERIC,
     upc NUMERIC
 );
-CREATE TABLE items_transactions (
+CREATE TABLE item_transactions (
     index SERIAL PRIMARY KEY,
     global_transaction_id NUMERIC REFERENCES transactions (global_transaction_id),
     item_id NUMERIC REFERENCES item_descriptions (item_id),
     dept_num NUMERIC,
     qty_sold NUMERIC,
     item_price NUMERIC,
-    qty_is_weight BIT,
+    qty_is_weight NUMERIC,
     ticket_num NUMERIC,
     date DATE,
     time_scanned TIME

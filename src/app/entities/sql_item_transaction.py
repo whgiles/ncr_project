@@ -2,7 +2,8 @@
 
 class ItemTransaction:
 
-    def __init__(self, global_transaction_id: int,
+    def __init__(self,
+                 global_transaction_id: int,
                  item_id: int,
                  dept_num: int,
                  qty_sold: int,

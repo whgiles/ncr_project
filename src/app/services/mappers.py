@@ -3,7 +3,6 @@ from src.app import app
 
 
 def dict_to_account(data: dict):
-    app.logger.error("kjsbfd--------------------------------------------------------------------------------------------------")
     acc = Account(
         data['account_number_hash'],
         data['number_of_transactions']
@@ -29,6 +28,7 @@ def dic_to_transaction(data: dict):
 
 def dic_to_item_transaction(data: dict):
     item = ItemTransaction(
+        data['global_transaction_id'],
         data['item_id'],
         data['dept_num'],
         data['qty_sold'],
@@ -43,6 +43,7 @@ def dic_to_item_transaction(data: dict):
 
 def dic_to_item_description(data: dict):
     item = ItemDescription(
+        data['item_id'],
         data['description'],
         data['ecomm_description'],
         data['category'],

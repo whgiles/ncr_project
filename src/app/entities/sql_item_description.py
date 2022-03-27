@@ -1,6 +1,7 @@
 class ItemDescription:
 
-    def __init__(self, item_id: int,
+    def __init__(self,
+                 item_id: int,
                  description: str,
                  ecomm_description: str,
                  category: str,

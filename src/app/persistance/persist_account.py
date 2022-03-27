@@ -12,10 +12,6 @@ class PersistAccount:
 
     def __init__(self, account: Account):
         self.account = account
-        with engine.connect() as conn:
-            sql = self.account_table.insert().values(account_number_hash=self.account.account_number_hash,
-                                                     number_of_transactions=self.account.number_of_transactions)
-            conn.execute(sql)
 
     def insert(self):
         sql = self.account_table.insert().values(account_number_hash=self.account.account_number_hash,

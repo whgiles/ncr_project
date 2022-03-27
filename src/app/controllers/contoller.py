@@ -5,11 +5,16 @@ from flask import request
 from src.app.services import dic_to_item_transaction, dic_to_transaction, dic_to_item_description, dict_to_account
 
 
+@app.route('/', methods=['GET'])
+def home():
+    return "<p>Hi Lindsey!!!!</p>"
+
+
 @app.route('/add/account', methods=['POST'])
 def add_account():
     data = request.get_json()
     acc = dict_to_account(data)
-    PersistAccount(acc)
+    PersistAccount(acc).insert()
     return "<p>Account Added</p>"
 
 
@@ -17,7 +22,7 @@ def add_account():
 def add_transaction():
     data = request.get_json()
     tran = dic_to_transaction(data)
-    PersistTransaction(tran)
+    PersistTransaction(tran).insert()
     return "<p>Transaction Added</p>"
 
 
@@ -25,7 +30,7 @@ def add_transaction():
 def add_item_description():
     data = request.get_json()
     item = dic_to_item_description(data)
-    PersistItemDescription(item)
+    PersistItemDescription(item).insert()
     return "<p>ItemDescription Added</p>"
 
 
@@ -33,5 +38,5 @@ def add_item_description():
 def add_item_transaction():
     data = request.get_json()
     item = dic_to_item_transaction(data)
-    PersistItemTransaction(item)
+    PersistItemTransaction(item).insert()
     return "<p>ItemTransaction Added</p>"

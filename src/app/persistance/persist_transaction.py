@@ -6,6 +6,7 @@ from src.app.entities import Transaction
 class PersistTransaction:
     transaction_table = Table('transactions', meta,
                               Column('index', INTEGER, primary_key=True),
+                              Column('global_transaction_id', NUMERIC),
                               Column('account_number_hash', TEXT),
                               Column('store_num', NUMERIC),
                               Column('ticket_num', NUMERIC),
@@ -21,6 +22,7 @@ class PersistTransaction:
 
     def insert(self):
         sql = self.transaction_table.insert().values(
+            global_transaction_id=self.transaction.global_transaction_id,
             account_number_hash=self.transaction.account_number_hash,
             store_num=self.transaction.store_num,
             ticket_num=self.transaction.ticket_num,
