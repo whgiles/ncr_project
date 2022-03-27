@@ -1,5 +1,4 @@
 from src.app.entities import *
-from src.app import app
 
 
 def dict_to_account(data: dict):
