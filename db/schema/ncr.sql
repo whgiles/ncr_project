@@ -6,7 +6,7 @@ CREATE TABLE accounts (
 CREATE TABLE transactions (
     index SERIAL PRIMARY KEY,
     global_transaction_id NUMERIC UNIQUE NOT NULL,
-    account_number_hash varchar(100) REFERENCES accounts (account_number_hash),
+    account_number_hash varchar(100) NULL,
     store_num NUMERIC,
     ticket_num NUMERIC,
     date DATE NOT NULL,

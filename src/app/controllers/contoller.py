@@ -7,7 +7,7 @@ from src.app.services import dic_to_item_transaction, dic_to_transaction, dic_to
 
 @app.route('/', methods=['GET'])
 def home():
-    return "<p>Hi Lindsey!!!!</p>"
+    return "<p>Hi NCR!</p>"
 
 
 @app.route('/add/account', methods=['POST'])
