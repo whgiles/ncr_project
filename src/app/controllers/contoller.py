@@ -43,7 +43,9 @@ def add_item_transaction():
     return "<p>ItemTransaction Added</p>"
 
 
-@app.route('/test')
-def test():
-    suggestions = BasedOnPastPurchases('11259155490741164724', '2020-07-15').run()
+@app.route('/<account_number_hash>/<curr_date>')
+def get_suggestions(account_number_hash=None, curr_date=None):
+    # suggestions = BasedOnPastPurchases('11259155490741164724', '2020-07-15').run()
+    print(account_number_hash, curr_date, type(account_number_hash), type(curr_date))
+    suggestions = BasedOnPastPurchases(account_number_hash, curr_date).run()
     return f'<p>{suggestions}</p>'

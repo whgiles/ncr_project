@@ -53,26 +53,26 @@ class BasedOnPastPurchases:
                 df1['lag_date'] = df1['date'].shift(1)
                 df1['diff_date'] = abs(df1['date'] - df1['lag_date']).dt.days
 
-                if df_length > 20:
-                    pass
-                    # X = df1['qty_sold']
-                    # y = df1['diff_date']
-                    # reg = LinearRegression(X, y)
+                a = {'last_date_of_purchase': max(df1.date),
+                     'average_cycle': df1.diff_date.mean(),
+                     'num_of_transactions': df_length,
+                     'item_id': df1.item_id.iloc[1]}
+                self.final_df = self.final_df.append(a, ignore_index=True)
 
-                else:
-
-                    a = {'last_date_of_purchase': max(df1.date),
-                         'average_cycle': df1.diff_date.mean(),
-                         'num_of_transactions': df_length,
-                         'item_id': df1.item_id.iloc[1]}
-                    self.final_df = self.final_df.append(a, ignore_index=True)
+        if len(self.final_df) > 1:
+            return True
+        else:
+            return False
 
     def run(self):
-        self._set_up()
-        self.final_df['today'] = pd.to_datetime(self.todays_date)
-        print(self.final_df)
+        if self._set_up():
+            self.final_df['today'] = pd.to_datetime(self.todays_date)
+            print(self.final_df)
 
-        self.final_df['diff_date'] = abs(self.final_df['last_date_of_purchase'] - self.final_df['today']).dt.days
-        self.final_df = self.final_df[self.final_df.diff_date > self.final_df.average_cycle]
+            self.final_df['diff_date'] = abs(self.final_df['last_date_of_purchase'] - self.final_df['today']).dt.days
+            self.final_df = self.final_df[self.final_df.diff_date > self.final_df.average_cycle]
 
-        return list(self.final_df.item_id)
+            return list(self.final_df.item_id)
+
+        else:
+            return None
