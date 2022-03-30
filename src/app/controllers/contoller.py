@@ -2,12 +2,13 @@ from src.app.entities import Account, ItemDescription, Transaction, ItemTransact
 from src.app.persistance import PersistAccount, PersistTransaction, PersistItemTransaction, PersistItemDescription
 from src.app import app, logger
 from flask import request
-from src.app.services import dic_to_item_transaction, dic_to_transaction, dic_to_item_description, dict_to_account
+from src.app.services import dic_to_item_transaction, dic_to_transaction, dic_to_item_description, dict_to_account, \
+    BasedOnPastPurchases
 
 
 @app.route('/', methods=['GET'])
 def home():
-    return "<p>Hi NCR!</p>"
+    return "<p>Hi WILFRIED!</p>"
 
 
 @app.route('/add/account', methods=['POST'])
@@ -40,3 +41,9 @@ def add_item_transaction():
     item = dic_to_item_transaction(data)
     PersistItemTransaction(item).insert()
     return "<p>ItemTransaction Added</p>"
+
+
+@app.route('/test')
+def test():
+    suggestions = BasedOnPastPurchases('11259155490741164724', '2020-07-15').run()
+    return f'<p>{suggestions}</p>'
