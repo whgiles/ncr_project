@@ -7,6 +7,7 @@ class PersistItemTransaction:
     item_transaction_table = Table('item_transactions', meta,
                                    Column('index', INTEGER, primary_key=True),
                                    Column('global_transaction_id', NUMERIC),
+                                   Column('item_id', NUMERIC, nullable=False),
                                    Column('dept_num', NUMERIC),
                                    Column('qty_sold', NUMERIC),
                                    Column('item_price', NUMERIC),
@@ -21,6 +22,7 @@ class PersistItemTransaction:
 
     def insert(self):
         sql = self.item_transaction_table.insert().values(
+            item_id=self.item_transaction.item_id,
             dept_num=self.item_transaction.dept_num,
             global_transaction_id=self.item_transaction.global_transaction_id,
             qty_sold=self.item_transaction.qty_sold,

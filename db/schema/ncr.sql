@@ -26,8 +26,8 @@ CREATE TABLE item_descriptions (
 );
 CREATE TABLE item_transactions (
     index SERIAL PRIMARY KEY,
-    global_transaction_id NUMERIC REFERENCES transactions (global_transaction_id),
-    item_id NUMERIC REFERENCES item_descriptions (item_id),
+    global_transaction_id NUMERIC,
+    item_id NUMERIC,
     dept_num NUMERIC,
     qty_sold NUMERIC,
     item_price NUMERIC,
