@@ -67,6 +67,10 @@ class BasedOnPastPurchases:
     def run(self):
         if self._set_up():
             self.final_df['today'] = pd.to_datetime(self.todays_date)
+            print(self.final_df['last_date_of_purchase'].dtypes)
+            print(self.final_df['today'].dtypes)
+            self.final_df.today = pd.to_datetime(self.final_df['today']).dt.date
+            self.final_df.last_date_of_purchase = pd.to_datetime(self.final_df['last_date_of_purchase']).dt.date
             print(self.final_df)
 
             self.final_df['diff_date'] = abs(self.final_df['last_date_of_purchase'] - self.final_df['today']).dt.days
