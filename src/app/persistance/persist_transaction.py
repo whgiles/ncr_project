@@ -1,6 +1,7 @@
 from sqlalchemy import Table, Column, INTEGER, TEXT, NUMERIC, DATE, TIME
 from src.app import engine, meta
 from src.app.entities import Transaction
+import pandas as pd
 
 
 class PersistTransaction:
@@ -35,3 +36,11 @@ class PersistTransaction:
 
         with engine.connect() as conn:
             conn.execute(sql)
+
+    @staticmethod
+    def select_all():
+        # sql = f"SELECT * FROM {self.transaction_table} WHERE global_transaction_id = '{str(account_number_hash)}'"
+
+        with engine.connect() as conn:
+            df = pd.read_sql_table('transactions', conn)
+        return df

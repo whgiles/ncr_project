@@ -1,6 +1,7 @@
 from sqlalchemy import Table, Column, INTEGER, NUMERIC, DATE, TIME
 from src.app import engine, meta
 from src.app.entities import ItemTransaction
+import pandas as pd
 
 
 class PersistItemTransaction:
@@ -35,3 +36,10 @@ class PersistItemTransaction:
 
         with engine.connect() as conn:
             conn.execute(sql)
+
+    @staticmethod
+    def select_all():
+        # sql = f"SELECT * FROM {self.item_transaction_table}'"
+        with engine.connect() as conn:
+            df = pd.read_sql_table('item_transactions', conn)
+        return df

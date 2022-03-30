@@ -1,0 +1,7 @@
+.idea/
+__pycache__/
+controllers/__pycache__/
+src/app/entities/__pycache__/
+src/app/persistance/__pycache__/
+src/app/services/__pycache__/
+venv/
